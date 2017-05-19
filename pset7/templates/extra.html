@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Extra
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('extra') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="beg" placeholder="Beg For Money" type="text"/>
+                <button class="btn btn-default" type="submit">Beg</button>
+            </div>
+            
+            
+            <div class="form-group">
+               <a href = "http://www.huffingtonpost.com/2012/06/13/robbing-a-bank-wont-make-you-rich_n_1592734.html"> <button class="btn btn-default rob" type="button">Rob Bank</button></a>
+            </div>
+            
+        </fieldset>
+    </form>
+{% endblock %}

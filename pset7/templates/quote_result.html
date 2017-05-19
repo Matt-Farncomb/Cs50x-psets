@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Result
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('quote_result') }}" method="post">
+        <fieldset>
+
+                      {{result.symbol}} ({{result.name}}) is currently priced at ${{result.price}} a share
+
+        </fieldset>
+    </form>
+{% endblock %}

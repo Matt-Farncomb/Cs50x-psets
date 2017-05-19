@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('history') }}" method="post">
+        <fieldset>
+                <h1>Transactions</h1>
+           
+           <table border = 1>
+                       <th>Stocks</th>
+                       <th>Purchase Price</th>
+                       <th>Quantity</th>
+                       <th>Transaction Date</th>
+                       
+                       
+                        </tr>
+
+            {% for row in rows %}
+                        <td> {{row.product}}</th>
+                        <td> ${{row.total_cost|round(2,'common')}}</th>
+                        <td> {{row.quantity}}</th>
+                        <td> {{row.date_of_purchase}}</th>
+                     
+                        
+                        
+                        </tr>
+            {% endfor %}
+            </table>
+                 
+              
+        </fieldset>
+    </form>
+{% endblock %}

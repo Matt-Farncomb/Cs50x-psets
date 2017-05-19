@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+
+import sys
+import helpers
+import os
+from analyzer import Analyzer
+from termcolor import colored
+from nltk.tokenize import TweetTokenizer
+
+def main():
+    
+    # ensure proper usage
+    if len(sys.argv) != 2:
+        sys.exit("Usage: ./tweets twitter_handle")
+    
+    # divide the tweets into individual words
+    tknzr = TweetTokenizer()
+    # get tweets from tweeter specified in command ine
+    tweets = helpers.get_user_timeline(sys.argv[1], count=50)
+    temp_list = []
+    # add these words to a list
+    for e in tweets:
+        e = tknzr.tokenize(e)
+        temp_list.append(e)
+    
+    # absolute paths to lists
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+    # instantiate analyzer
+    analyzer = Analyzer(positives, negatives)
+    score = 0
+    
+    
+    # analyze word
+    for y in temp_list:
+        for xy in y:
+            # check if xy starts with a letter.
+            for i in range(ord('a'),ord('z')+1):
+                if xy.startswith(chr(i)):
+                    # if it does, score it.
+                    score += analyzer.analyze(xy.lower())
+        if score > 0.0:
+            print(colored(score, "green"), end=" ")
+            print(colored(' '.join(y), "green"))
+            score = 0
+        elif score < 0.0:
+            print(colored(score, "red"), end=" ")
+            print(colored(' '.join(y),  "red"))
+            score = 0
+        else:
+            print(colored(score, "yellow"), end=" ")
+            print(colored(' '.join(y),  "yellow"))
+            score = 0
+
+
+
+if __name__ == "__main__":
+    main()

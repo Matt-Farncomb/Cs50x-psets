@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('sell_one') }}" method="post">
+        <fieldset>
+          
+                 
+           <h1>Your Stocks</h1>
+          
+           <table border = 1>
+                       <th>Stocks Owned</th>
+                       <th>Purchase Price</th>
+                       <th>Current Stock Price</th>
+                       <th>Quantity</th>
+                       <th>Current Total Value</th>
+                        </tr>
+
+            {% for row in rows %}
+                {% if row.new_quantity > 0 %}
+                        <td><button class="btn btn-default" name = "currency" type="submit" value={{row.stocks_owned}}>{{row.stocks_owned}}</button></th>
+                        <td>${{row.purchase_price}}</th>
+                        <td>${{row.Current_Stock_Price|round(2,'common')}}</th>
+                        <td> {{row.new_quantity}}</th>
+                        <td>${{row.Current_Total_Value|round(2,'common')}}</th>
+                        </tr>
+                {% endif %}
+            {% endfor %}
+            </table>
+            <p> Click on the SYMBOL if you want to sell a single stock</p>
+            
+            <h1>Your Net Worth</h1>
+            <table border = 1>
+                        <th>Cash</th>
+                        <th>Net Worth</th>
+                        </tr>
+                         
+            {% for row in rows2 %}
+                        <td>${{row.cash|round(2,'common')}}</td>
+                        {% endfor %}
+            {% for row in rows3 %}
+                        <td>${{row.net_worth|round(2,'common')}}</td>
+                        </tr>
+                        {% endfor %}
+            
+             </table>
+
+        </fieldset>
+    </form>
+{% endblock %}
+
+
+<div class="form-group">
+                <button class="btn btn-default" type="submit" value="test">test</button>
+            </div>
