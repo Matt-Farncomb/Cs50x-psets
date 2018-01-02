@@ -10,4 +10,4 @@ that is whether or not these tweets are neagtive, positive or neutral.
 
 **Pset 8** is an app that intereacts with Google Maps API and enables users to look at articles from different cities around the US.
 
-This readme will be improved in the future to provide more information.
+
